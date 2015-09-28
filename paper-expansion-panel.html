@@ -1,0 +1,131 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-material/paper-material.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
+
+<!--
+A simple WIP Material Design Expansion Panel.
+
+Example:
+
+    <paper-expansion-panel panel-title="Users" panel-value="You are an administrator">
+      Content coming here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-expansion-panel-background-color` | Background color of the expansion panel | `#fff`
+`--paper-expansion-panel-color` | Text color of the expansion panel | `rgba(0,0,0,.54)`
+`--paper-expansion-panel-title-color` | Text color of the header title in the expansion panel | `#000`
+
+
+
+@group paper-expansion-panel
+@element paper-expansion-panel
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="paper-expansion-panel">
+  <link rel="import" type="css" href="./paper-expansion-panel.css">
+  <template>
+    <paper-material id="card" on-tap="_handleTap" class='card card--spaced' elevation='0'>
+      <header>
+        <span class="expansion-panel-title">{{panelTitle}}<span class="expansion-panel-meta">{{panelMeta}}</span></span>
+        <span class="expansion-panel-value">{{panelValue}}</span>
+        <iron-icon icon="expand-more" title="Expand / collapse card contents"></iron-icon>
+      </header>
+      <div class="expansion-panel-content" id="wrapper">
+        <div class="expansion-panel-overflow" id="content">
+          <content></content>
+          <footer class="expansion-panel-buttons" id="buttons"></footer>
+        </div>
+      </div>
+    </paper-material>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'paper-expansion-panel',
+
+    properties: {
+
+      /**
+       * `panelTitle` indicates the title of the expansion panel.
+       */
+      panelTitle: String,
+
+      /**
+       * `panelValue` the content to display when the panel is collapsed.
+       */
+      panelValue: String,
+
+      /**
+       * `panelMeta` additional text to show underneath the panel title.
+       */
+      panelMeta: String,
+
+
+      /**
+       * `expanded` defines whether the panel is expanded or collapsed.
+       */
+      expanded: {
+        type: Boolean,
+        reflectToAttribute: true,
+        value: false
+      }
+
+    },
+
+
+    /**
+     * Collapses and expands the panel. Takes an optional
+     * paremter definining whether the panel is expanded or not.
+     *
+     * @param {boolean} expanded The panel is expanded.
+     */
+    toggle: function(exp){
+      // calculate the current height of the overflowing content
+      var contentHeight = window.getComputedStyle(this.$.content,null).
+        getPropertyValue("height");
+      var expanded = exp === true ? exp : !this.get('expanded');
+      this.set('expanded', expanded);
+      // set the height to the calculated content
+      this.$.wrapper.style.height =
+        this.get('expanded') ? contentHeight : '0px';
+    },
+
+    _handleTap: function(ev){
+      if (!this.get('expanded')){
+        this.toggle();
+      }
+    },
+
+    attached: function(){
+      var self = this;
+      // automatically add elements with the `class` button to the
+      // action area of the paper-expansion-panel.
+      [].slice.call(this.querySelectorAll('.button')).
+        forEach(function(btn){
+          self.$.buttons.appendChild(btn);
+      });
+      Polymer.updateStyles();
+    },
+  });
+
+</script>
+
