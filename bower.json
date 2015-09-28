@@ -4,7 +4,7 @@
   "authors": [
     "Adrian Zumbrunnen <azumbrunnen@google.com>"
   ],
-  "description": "A material design expansion panel",
+  "description": "A simple, WIP Material Design expansion panel for Polymer.",
   "keywords": [
     "web-component",
     "polymer",
