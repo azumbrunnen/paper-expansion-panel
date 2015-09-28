@@ -1,8 +1,8 @@
 {
   "name": "paper-expansion-panel",
-  "version": "0.9",
+  "version": "0.0.1",
   "authors": [
-    "Anonymous <azumbrunnen@google.com>"
+    "Adrian Zumbrunnen <azumbrunnen@google.com>"
   ],
   "description": "A material design expansion panel",
   "keywords": [
