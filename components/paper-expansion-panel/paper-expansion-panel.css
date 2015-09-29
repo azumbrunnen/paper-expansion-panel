@@ -1,0 +1,119 @@
+:host {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: var(--paper-expansion-panel-color, rgba(0,0,0,.54));
+  line-height: 1.45em;
+  font-size: 14px;
+  display: block;
+}
+header {
+  align-items: center;
+  display: flex;
+}
+iron-icon {
+  color: var(--secondary-text-color, rgba(0,0,0,0.54));
+  margin-left: 16px;
+}
+paper-material {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14),
+    0 0px 1px 0 rgba(0, 0, 0, .2),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 0px 1px 0 rgba(0, 0, 0, .2);
+  background: var(--paper-expansion-panel-background-color, #fff);
+  margin: 0 24px;
+  padding: 16px;
+}
+paper-material:hover {
+  background: var(--paper-expansion-panel-hover-color, #f4f4f4);
+  cursor: pointer;
+}
+
+/* EXPANSION STATES */
+:host[expanded] paper-material:hover{
+  background: var(--paper-expansion-panel-background-color, #fff);
+}
+:host[expanded] paper-material{
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  padding: 24px 24px 0px 24px;
+  margin: 24px 0;
+}
+:host[expanded] iron-icon {
+  opacity: 0;
+}
+:host[expanded] .expansion-panel-content {
+  opacity: 1;
+}
+:host[expanded] .expansion-panel-value,
+:host[expanded] .expansion-panel-meta {
+  opacity: 0;
+}
+:host[expanded] .expansion-panel-meta {
+  max-height: 0;
+}
+:host[expanded] .expansion-panel-title {
+  text-rendering: geometricPrecision;
+  font-weight: bold;
+}
+
+/* CONTENT BLOCKS */
+.expansion-panel-title,
+.expansion-panel-value,
+.expansion-panel-meta {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: initial;
+  margin-right: 16px;
+  overflow: hidden;
+}
+.expansion-panel-title {
+  color: var(--paper-expansion-panel-title-color, #000);
+  width: 144px;
+}
+.expansion-panel-content,
+.expansion-panel-value,
+.expansion-panel-meta {
+  color: var(--paper-expansion-panel-title-color, rgba(0,0,0,0.54));
+  flex: 1;
+}
+.expansion-panel-meta {
+  font-weight: normal;
+  font-size: 12px;
+  display: block;
+  max-height: 20px;
+}
+.expansion-panel-overflow {
+  padding-top: 12px;
+}
+.expansion-panel-content {
+  overflow: hidden;
+  opacity: 0;
+  height: 0;
+}
+.expansion-panel-buttons {
+  text-align: right;
+  padding: 24px 0px;
+}
+
+/* ANIMATION CONFIG */
+.expansion-panel-value,
+.expansion-panel-title,
+.expansion-panel-meta {
+  transition:
+    opacity .15s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
+    max-height .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s;
+}
+paper-material {
+  transition:
+    margin .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
+    padding .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s;
+}
+.expansion-panel-content {
+  transition:
+    height .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
+    opacity 0.3s ease-in-out 0.3s;
+}
+iron-icon {
+  transition: opacity .15s ease-in-out .15s;
+}
