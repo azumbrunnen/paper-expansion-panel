@@ -1,0 +1,66 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>Paper Expansion Panel Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../paper-expansion-panel.html">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        max-width:  640px;
+        margin: 72px auto;
+      }
+      p {
+        margin-bottom: 72px;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <paper-expansion-panel panel-title="General settings" panel-value="I'm an expansion panel">
+      Content goes here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+    <paper-expansion-panel panel-title="Claim ownership" panel-value="You are currently not an owner of this website">
+      Content goes here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+    <paper-expansion-panel panel-title="SFTP / FTP" panel-value="Currently not setup">
+      Content goes here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+    <paper-expansion-panel panel-title="Users" panel-value="You are currently not an owner"
+      panel-meta="Configure users">
+      Content goes here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+    <paper-expansion-panel panel-title="Advanced settings" panel-value="Filtering has been entierily disabled for the whole website">
+      Content goes here...
+      <paper-button class="button">Confirm</paper-button>
+      <paper-button class="button">Cancel</paper-button>
+    </paper-expansion-panel>
+
+    <script>
+      [].slice.call(document.querySelectorAll('paper-button')).forEach(function(btn){
+        // each button should close its parent expansion panel
+        btn.addEventListener('click', function(ev){
+          ev.target.closest('paper-expansion-panel').toggle();
+        });
+      });
+    </script>
+  </body>
+</html>
