@@ -10,7 +10,6 @@ header {
   display: flex;
 }
 iron-icon {
-  transition: opacity .15s ease-in-out .15s;
   color: var(--secondary-text-color, rgba(0,0,0,0.54));
   margin-left: 16px;
 }
@@ -24,7 +23,7 @@ paper-material {
   padding: 16px;
 }
 paper-material:hover {
-  background: #eee;
+  background: var(--paper-expansion-panel-hover-color, #f4f4f4);
   cursor: pointer;
 }
 
@@ -48,8 +47,10 @@ paper-material:hover {
 }
 :host[expanded] .expansion-panel-value,
 :host[expanded] .expansion-panel-meta {
-  max-height: 0;
   opacity: 0;
+}
+:host[expanded] .expanded-panel-meta {
+  max-height: 0;
 }
 :host[expanded] .expansion-panel-title {
   text-rendering: geometricPrecision;
@@ -100,7 +101,7 @@ paper-material:hover {
 .expansion-panel-title,
 .expansion-panel-meta {
   transition:
-    opacity .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
+    opacity .15s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
     max-height .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s;
 }
 paper-material {
@@ -111,5 +112,8 @@ paper-material {
 .expansion-panel-content {
   transition:
     height .4s cubic-bezier(0.4, 0.0, 0.2, 1) .15s,
-    opacity 0.3s ease-in-out 0.15s;
+    opacity 0.3s ease-in-out 0.3s;
+}
+iron-icon {
+  transition: opacity .15s ease-in-out .15s;
 }
